@@ -9,6 +9,8 @@
 import os
 import numpy as np
 import tensorflow as tf
+tf = tf.compat.v1
+
 from .. import custom_ops
 from ...util import EasyDict
 

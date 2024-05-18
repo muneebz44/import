@@ -8,6 +8,8 @@
 
 import numpy as np
 import tensorflow as tf
+tf = tf.compat.v1
+
 import dnnlib.tflib as tflib
 
 from metrics import metric_base
