@@ -8,6 +8,7 @@
 
 import numpy as np
 import tensorflow as tf
+tf = tf.compat.v1
 import dnnlib
 import dnnlib.tflib as tflib
 from dnnlib.tflib.autosummary import autosummary
@@ -240,11 +241,11 @@ def training_loop(
     Gs_update_op = Gs.setup_as_moving_average_of(G, beta=Gs_beta)
 
     # Finalize graph.
-    with tf.device('/gpu:0'):
-        try:
-            peak_gpu_mem_op = tf.contrib.memory_stats.MaxBytesInUse()
-        except tf.errors.NotFoundError:
-            peak_gpu_mem_op = tf.constant(0)
+    # with tf.device('/gpu:0'):
+    #     try:
+    #         peak_gpu_mem_op = tf.contrib.memory_stats.MaxBytesInUse()
+    #     except tf.errors.NotFoundError:
+    #         peak_gpu_mem_op = tf.constant(0)
     tflib.init_uninitialized_vars()
 
     print('Initializing logs...')
@@ -327,7 +328,7 @@ def training_loop(
                 autosummary('Timing/sec_per_tick', tick_time),
                 autosummary('Timing/sec_per_kimg', tick_time / tick_kimg),
                 autosummary('Timing/maintenance_sec', maintenance_time),
-                autosummary('Resources/peak_gpu_mem_gb', peak_gpu_mem_op.eval() / 2**30)))
+                # autosummary('Resources/peak_gpu_mem_gb', peak_gpu_mem_op.eval() / 2**30)))
             autosummary('Timing/total_hours', total_time / (60.0 * 60.0))
             autosummary('Timing/total_days', total_time / (24.0 * 60.0 * 60.0))
 

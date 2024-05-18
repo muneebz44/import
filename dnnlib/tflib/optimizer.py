@@ -131,13 +131,13 @@ class Optimizer:
 
         # Report memory usage if requested.
         deps = []
-        if self._report_mem_usage:
-            self._report_mem_usage = False
-            try:
-                with tf.name_scope(self.id + '_mem'), tf.device(device.name), tf.control_dependencies([loss]):
-                    deps.append(autosummary.autosummary(self.id + "/mem_usage_gb", tf.contrib.memory_stats.BytesInUse() / 2**30))
-            except tf.errors.NotFoundError:
-                pass
+        # if self._report_mem_usage:
+        #     self._report_mem_usage = False
+        #     try:
+        #         with tf.name_scope(self.id + '_mem'), tf.device(device.name), tf.control_dependencies([loss]):
+        #             deps.append(autosummary.autosummary(self.id + "/mem_usage_gb", tf.contrib.memory_stats.BytesInUse() / 2**30))
+        #     except tf.errors.NotFoundError:
+        #         pass
 
         # Compute gradients.
         with tf.name_scope(self.id + "_grad"), tf.device(device.name), tf.control_dependencies(deps):
