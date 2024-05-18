@@ -9,6 +9,8 @@
 import platform
 import numpy as np
 import tensorflow as tf
+tf = tf.compat.v1
+
 
 from collections import OrderedDict
 from typing import List, Union

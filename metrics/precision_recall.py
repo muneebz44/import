@@ -9,6 +9,8 @@
 import os
 import numpy as np
 import tensorflow as tf
+tf = tf.compat.v1
+
 import dnnlib
 import dnnlib.tflib as tflib
 

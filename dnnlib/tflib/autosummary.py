@@ -24,6 +24,8 @@ Notes:
 from collections import OrderedDict
 import numpy as np
 import tensorflow as tf
+tf = tf.compat.v1
+
 from tensorboard import summary as summary_lib
 from tensorboard.plugins.custom_scalar import layout_pb2
 
